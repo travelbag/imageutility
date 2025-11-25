@@ -112,34 +112,34 @@ export default function App() {
   }
 
   return (
-    <div className="App">
-      <h1>iOS Screenshot Generator</h1>
-      <p>Upload one high-resolution image and this tool will generate Apple App Store screenshot sizes and place them into separate folders inside a ZIP.</p>
+    <div className="p-6 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">iOS Screenshot Generator</h1>
+      <p className="mb-4">Upload one high-resolution image and this tool will generate Apple App Store screenshot sizes and place them into separate folders inside a ZIP.</p>
 
-      <label>
-        <span>Source image (PNG/JPG)</span>
-        <input type="file" accept="image/*" onChange={handleFileChange} />
+      <label className="block mb-2">
+        <span className="text-sm font-medium">Source image (PNG/JPG)</span>
+        <input type="file" accept="image/*" onChange={handleFileChange} className="block mt-2" />
       </label>
 
       {file && (
-        <div className="file-info">
+        <div className="mb-4">
           <strong>Selected file:</strong> {file.name} — {(file.size / 1024 / 1024).toFixed(2)} MB
         </div>
       )}
 
-      <div className="button-group">
-        <button onClick={generateZip} className="btn-primary">Generate ZIP</button>
-        <button onClick={() => { setFile(null); setStatus(""); }} className="btn-secondary">Reset</button>
+      <div className="flex gap-3">
+        <button onClick={generateZip} className="px-4 py-2 bg-blue-600 text-white rounded">Generate ZIP</button>
+        <button onClick={() => { setFile(null); setStatus(""); }} className="px-4 py-2 bg-gray-200 rounded">Reset</button>
       </div>
 
-      <div className="status-box">
+      <div className="mt-4 p-3 bg-gray-50 rounded">
         <strong>Status:</strong>
-        <div className="status-text">{status || "Idle"}</div>
+        <div className="mt-2 text-sm">{status || "Idle"}</div>
       </div>
 
-      <div className="notes-section">
+      <div className="mt-6 text-sm text-gray-600">
         <p><strong>Notes:</strong></p>
-        <ul>
+        <ul className="list-disc ml-5">
           <li>Provide a high-res source image (at least as large as the largest target 2796×1290) for best quality.</li>
           <li>Images are exported as PNG with white background (Apple requires no transparency for screenshots).</li>
           <li>Folder structure inside the ZIP: <code>DeviceName/orientation/filename.png</code>.</li>
